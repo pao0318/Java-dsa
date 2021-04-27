@@ -1,17 +1,17 @@
 import java.util.*;
 public class Solution {
-    int counter(int a[], int n1){
-        int csum=a[0];
+    int maxSubArray(int a[]){
+        int n1=a.length;
+        int csum=0;
         int osum=a[0];
         for (int i=0;i<n1; i++){
-            if (csum>=0){
-                csum=csum+a[i];
-            }
+             csum=csum+a[i];
+             
             if (csum>osum){
                 osum=csum;
             }
-            else{
-                csum=a[i];
+            if(csum<0){
+                csum=0;
                 
             }
             
@@ -27,7 +27,7 @@ public class Solution {
             A[j]=sc.nextInt();
             
         }
-        int ans=new Solution().counter(A,n1);
+        int ans=new Solution().maxSubArray(A);
         System.out.println(ans);
         
     }
