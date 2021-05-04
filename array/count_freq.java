@@ -1,6 +1,6 @@
 import java.util.*;
 public class Main{
-    public int Binary_freq(int arr[], int n, int x, boolean searchFirst){
+    public static int Binary_freq(int arr[], int n, int x, boolean searchFirst){
         int low=0; int high=n-1; int result=-1;
         while(low<=high){
             int mid=(low+high)/2;
