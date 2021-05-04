@@ -1,6 +1,6 @@
 import java.util.*;
 public class Main{
-    int Binary_freq(int arr[], int n, int x, boolean searchFirst){
+    public int Binary_freq(int arr[], int n, int x, boolean searchFirst){
         int low=0; int high=n-1; int result=-1;
         while(low<=high){
             int mid=(low+high)/2;
@@ -10,7 +10,7 @@ public class Main{
                 if(searchFirst)
                     high=mid-1;
                 else
-                    low=md+1;
+                    low=mid+1;
             }
                 
             if(arr[mid]>x)
@@ -23,18 +23,21 @@ public class Main{
         return result;
     }
     
-    public static void main(String args []){
+    public static void main(String args []) throws Exception{
         Scanner sc=new Scanner(System.in);
+        int LastIndex=0;
         int A[]= {1,2,3,3,3,5,5,5,5,6,8,9};
+        int size=A.length;
         System.out.println("Enter a Number");
         int y=sc.nextInt();
-        int FirstIndex=Binary_freq(A,A.length,y, true);
+        int FirstIndex=Binary_freq(A, size, y, true);
         if (FirstIndex==-1)
             System.out.println("Count is 0:");
             
         else
-            int LastIndex=Binary_freq(A,A.length,y,false);
-            System.out.println("Count is:"+ LastIndex-FirstIndex+1);
+            LastIndex=Binary_freq(A,A.length,y,false);
+            System.out.println(LastIndex-FirstIndex+1);
         
     
+}
 }
