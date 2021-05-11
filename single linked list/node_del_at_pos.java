@@ -1,70 +1,71 @@
-class LinkedList2{
-
+class Main{
     Node head;
-
+    
     class Node{
         int data;
         Node next;
         Node(int d){
             data=d;
             next=null;
-
         }
     }
-
-    public void push(int new_Data){
-        Node new_Node=new Node(new_Data);
-        new_Node.next=head;
-        head=new_Node;
+    public void insert(int new_data){
+        Node n=new Node(new_data);
+        if(head==null)
+            head=n;
+        else{
+            Node temp=head;
+            while(temp.next!=null){
+                temp=temp.next;
+            }
+            temp.next=n;
+        }
     }
-
-    void deleteNode(int key){
-        if (head==null){
+    
+    public void show(){
+        Node node=head;
+        while(node!=null){
+            System.out.println(node.data);
+            node=node.next;
+        }
+    }
+    
+    void deletenode(int key){
+        if(head==null)
             return;
-        }
+            
         Node temp=head;
-
         if (key==0){
             head=temp.next;
             return;
         }
-
-        for(int i=0; temp!=null&& i<key-1;i++){
+        
+        for(int i=0;temp!=null && i<key-1;i++)
             temp=temp.next;
-        }
-        if(temp==null||temp.next==null)
-        return;
-
-
+            
+        if (temp.next==null)    
+            return;
+            
         Node next=temp.next.next;
-
         temp.next=next;
-
-
+            
     }
-
-    void printList(){
-        Node tnode=head;
-        while(tnode!=null){
-            System.out.print(tnode.data+" ");
-            tnode=tnode.next;
-        }
-    }
-
-
-    public static void main(String[] args) {
-        LinkedList2 obj= new LinkedList2();
-
-        obj.push(7);
-        obj.push(1);
-        obj.push(3);
-        obj.push(2);
-        obj.push(8);
+    
+    public static void main(String args[]) throws Exception{
+        Main list=new Main();
+        list.insert(5);
+        list.insert(50);
+        list.insert(15);
+        list.insert(10);
+        list.insert(9);
         System.out.println("\nCReated Linked List is: ");
-        obj.printList();
-
-        obj.deleteNode(4);
+        list.show();
+        list.deletenode(2);
         System.out.println("\nLinked List after deletion at pos 4 is:" );
-        obj.printList();
+        list.show();
     }
+    
+    
+    
+    
 }
