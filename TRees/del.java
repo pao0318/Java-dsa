@@ -45,11 +45,28 @@ class BST{
                     return node;
             }
             else{
+                Node successor=getSuccessor(node);
+                node.data=successor.data;
+                node.right=delete(node.right,node.data);
+                return node;
                 
             }
     }
+        return node;
  
 }
+    public Node getSuccessor(Node node){
+    if(node==null)
+        return null;
+    Node temp=node.right;  
+    
+    while(temp!=null)
+        temp=temp.left;
+    
+    return temp;
+}
+}
+    
 
 
 
