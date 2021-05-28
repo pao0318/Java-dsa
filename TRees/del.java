@@ -37,8 +37,15 @@ class BST{
             
         else{    
             if(node.left==null||node.right==null){
-                Node temp=node.null;
-                temp=node.left
+                Node temp=null;
+                temp=node.left==null? node.right:node.left;
+                if(temp==null)
+                    return null;
+                else
+                    return node;
+            }
+            else{
+                
             }
     }
  
