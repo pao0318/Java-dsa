@@ -42,7 +42,7 @@ class BST{
                 if(temp==null)
                     return null;
                 else
-                    return node;
+                    return temp;
             }
             else{
                 Node successor=getSuccessor(node);
@@ -84,7 +84,9 @@ public class BSTApp{
         root=a.insert(root,1);
         root=a.insert(root,14);
         root=a.insert(root,13);
-        a.inorder();
+        root=a.delete(root,1);
+        root=a.delete(root,14);
+        
        
         
         
