@@ -58,9 +58,10 @@ class BST{
     public Node getSuccessor(Node node){
     if(node==null)
         return null;
+        
     Node temp=node.right;  
     
-    while(temp!=null)
+    while(temp.left!=null)
         temp=temp.left;
     
     return temp;
