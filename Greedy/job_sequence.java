@@ -1,5 +1,5 @@
 import java.util.*;
-class Job{
+public class Job{
     // Each job has a unique-id,profit and deadline
     char id;
     int deadline, profit;
