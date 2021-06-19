@@ -1,19 +1,19 @@
-class Solution {
-    List<List<Integer>> ans = new ArrayList<>();
-    public List<List<Integer>> subsets(int[] nums) {
-        int n = nums.length;
-        solve(nums,new ArrayList<>(),0,n);
-        return ans;
+import java.util.*;
+public class Main{
+    public static void main(String args[])throws Exception{
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        String n=" ";
+        int i=0;
+        solve(s,n,i);
     }
-    void solve(int[] nums,List<Integer> cur,int x,int n){
-        if(x == n){ 
-            ans.add(new ArrayList<>(cur));
+    public static void solve(String ip, String op,int i){
+        if(i==ip.length()){
+            System.out.println(op);
             return;
         }
-        List<Integer> temp=new ArrayList<>(cur);
-        temp.add(nums[x]);
-        solve(nums,cur,x+1,n);
-        solve(nums,temp,x+1,n);
-        return;
-    }
+        solve(ip,op+ip.charAt(i),i+1);
+        solve(ip,op,i+1);
+ 
+}
 }
