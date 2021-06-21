@@ -4,14 +4,12 @@ public class Main{
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
         char [] str=new char[2*n];
-        solve(str,n);
+        int open=n;
+        int close=n;
+        int pos=0;
+        printparenthesis(str,open,close,pos);
     }
-    static void solve(char str[], int n){
-        if(n>0){
-            printparenthesis(str,n,n,0);
-            return;
-        }
-    }
+  
     
     static void printparenthesis(char str[], int open,int close,int pos){
         if(open==0&&close==0){
