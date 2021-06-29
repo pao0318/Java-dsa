@@ -1,5 +1,4 @@
 import java.util.*;
-
 class Solution {
     public boolean solve(int[] nums, int k) {
         if(nums.length==0||nums==null)
