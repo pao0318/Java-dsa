@@ -3,6 +3,9 @@ import java.util.*;
 class Solution {
     public boolean solve(int n) {
         int key=digits(n);
+//         or
+//         int length = (int) Math.log10(n) + 1;
+//         to get number of digits in number O(logn) complexity
         int c=cube(n,key);
         if(c==n)
             return true;
