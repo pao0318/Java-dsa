@@ -8,11 +8,8 @@ public class Main{
 		if(ar[n]!=0)
 			return ar[n];
 			
-        int fib1=Fibo(n-1,ar);
-        int fib2=Fibo(n-2,ar);
-		int fib=fib1+fib2;
-		ar[n]=fib;
-
+        	int fib1=Fibo(n-1,ar)+Fibo(n-2,ar);
+        	ar[n]=fib;
 		return fib;
 
 	}
