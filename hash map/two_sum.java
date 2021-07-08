@@ -1,3 +1,4 @@
+// return index of the elements sum
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         ArrayList<Integer> list=new ArrayList<>();
