@@ -1,3 +1,4 @@
+// return true or false
 import java.util.*;
 class Solution {
     public boolean solve(int[] nums, int k) {
