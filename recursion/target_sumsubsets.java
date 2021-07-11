@@ -1,9 +1,6 @@
 // Java code to find the number of
 // possible subset with given sum
 import java.util.*;
-import java.lang.*;
-import java.io.*;
-
 class GFG {
 	
 	static int count;
