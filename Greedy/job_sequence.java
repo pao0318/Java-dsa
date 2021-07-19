@@ -70,3 +70,57 @@ public class Job{
     
         
 }
+
+
+
+
+
+// GFG Approach
+class Solution
+{
+    //Function to find the maximum profit and the number of jobs done.
+    int[] JobScheduling(Job arr[], int n)
+    {
+        Arrays.sort(arr,(a,b)->(b.profit-a.profit));
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            max=Math.max(max,arr[i].deadline);
+        }
+        int []pro=new int[max+1];
+        for(int k=0;k<max+1;k++)
+            pro[k]=-1;
+            
+        int countjob=0;int ans=0;
+        for(int i=0;i<n;i++){
+            for(int j=arr[i].deadline;j>0;j--){
+                if(pro[j]==-1){
+                    pro[j]=i;
+                    countjob++;
+                    ans+=arr[i].profit;
+                    break;
+                }
+            }
+        }
+        int res[]=new int[2];
+        res[0]=countjob;
+        res[1]=ans;
+        return res;
+            
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
