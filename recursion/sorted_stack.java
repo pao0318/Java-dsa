@@ -1,13 +1,14 @@
 import java.util.*;
 public class Main{
-    static int sort(Stack<Integer> s){
+    static void sort(Stack<Integer> s){
         if(!s.isEmpty()){
             int x=s.pop();
             sort(s);
             pushback(s,x);
         }
+    }
     static void pushback(Stack<Integer>s, int x){
-    }    
+    
         if(s.isEmpty()||x>s.peek()){
             s.push(x);
             return;
@@ -16,7 +17,8 @@ public class Main{
         pushback(s,x);
         s.push(temp);
         
-    }
+    } 
+    
     // printing
     static void printStack(Stack<Integer> s)
     {
