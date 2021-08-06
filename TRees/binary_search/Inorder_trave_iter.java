@@ -34,3 +34,37 @@ class Solution {
         return treeArr;
     }
 }
+
+
+// Better Complexity than mapper function 
+
+ 
+class Solution {
+    public int[] solve(Tree root) {
+        if(root==null)
+            return new int[0];
+
+         ArrayList<Integer> list=new ArrayList<>();
+         helper(root,list);
+        int[] returnedArray = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+             returnedArray[i] = list.get(i);
+         }
+         return returnedArray;   
+
+
+    }
+    ArrayList<Integer> helper(Tree root,ArrayList<Integer> list){
+        if (root.left != null) {
+            helper(root.left, list);
+        }
+        list.add(root.val);
+        if (root.right != null) {
+            helper(root.right, list);
+        }
+        
+        // int[] array = list.stream().mapToInt(Integer::intValue).toArray();
+        return list;
+
+    }
+}
