@@ -32,3 +32,35 @@ class Solution {
 
     }
 }
+
+
+
+// Solution
+class Solution {
+    public int[] solve(int n) {
+        List<Integer> input = new ArrayList<>();
+        List<Integer> result = formSeries(1, n, input);
+        int[] arr = new int[result.size()];
+        int idx = 0;
+        for (int data : result) {
+            arr[idx] = data;
+            idx++;
+        }
+
+        return arr;
+    }
+
+    private List<Integer> formSeries(int i, int n, List<Integer> list) {
+        if (i > n) {
+            List<Integer> baseList = new ArrayList<>();
+            return baseList;
+        }
+
+        list.add(i);
+        formSeries(i * 10, n, list);
+
+        if (i % 10 != 9)
+            formSeries(i + 1, n, list);
+        return list;
+    }
+}
