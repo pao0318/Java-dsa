@@ -17,7 +17,7 @@ class Solution {
     int helper(int[] matrix1, int l, int h) {
         if (h >= l && l <= matrix1.length - 1) {
             int mid = l + (h - l) / 2;
-            if (matrix1[mid] == 1 && mid != l)
+            if (matrix1[mid] == 1 && mid != l) // condition included 
                 return helper(matrix1, l, mid);
             if (matrix1[mid] == 0)
                 return helper(matrix1, mid + 1, h);
