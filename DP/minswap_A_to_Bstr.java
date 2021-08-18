@@ -29,3 +29,33 @@ public class Solution {
         return t[m][n];
     }
 }
+// Recursive approach
+public class Solution {
+    int memo[][];
+    public int minDistance(String a, String b) {
+        memo = new int[a.length()][b.length()];
+        for (int[] row : memo) Arrays.fill(row, -1);
+        return editDist(a, b, 0, 0);
+    }
+    
+    public int editDist(String a, String b, int i, int j) {
+        if (i == a.length() && j == b.length()) 
+            return 0;
+        if (i == a.length()) 
+            return b.length() - j;
+
+        if (j == b.length()) 
+            return a.length() - i;
+
+        if (memo[i][j] != -1)
+             return memo[i][j];
+        int res = Integer.MAX_VALUE;
+        if (a.charAt(i) == b.charAt(j)) res = editDist(a, b, i + 1, j + 1);
+        res = Math.min(res, 1 + editDist(a, b, i + 1, j + 1));
+        res = Math.min(res, 1 + editDist(a, b, i + 1, j));
+        res = Math.min(res, 1 + editDist(a, b, i, j + 1));
+        return memo[i][j] = res;
+    }
+    
+    
+}
