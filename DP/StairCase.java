@@ -16,8 +16,9 @@ public class Main{
             else if(i==2)
                 arr[i]=arr[i-1]+arr[i-2];                
             
-            else
+            else{
             arr[i]=arr[i-1]+arr[i-2]+arr[i-3];
+        }
         }
         return arr[n];
         
