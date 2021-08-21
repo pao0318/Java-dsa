@@ -37,7 +37,7 @@ ArrayList<ArrayList<Integer>> solve(int n, int p, ArrayList<Integer> a ,ArrayLis
        for(int i=1;i<=n;i++){
            
            if(pipe_end[i]==0 && pipe_start[i]>0){
-               int ans=1000000;
+               ans=1000000;
                int ending=dfs(i);
                ArrayList<Integer> list=new ArrayList<>();
                list.add(i);
