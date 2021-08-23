@@ -2,7 +2,7 @@
 class Solution{
     static int maxGold(int n, int m, int M[][])
     {
-        int [][]dp =new int[n+1][m+1];
+        int [][]dp =new int[n][m]; #doubt for n+1 m+1
         for(int j=m-1;j>=0;j--){
             for(int i=n-1;i>=0;i--){
                 if(j==m-1)
