@@ -135,3 +135,39 @@ public class Main
                            + maxValue); 
     } 
 }
+
+// Working
+class Solution
+{
+    
+    class ItemComparator implements Comparator<Item>{
+        public int compare(Item o1, Item o2){
+            double n1=(double)o1.value/(double)o1.weight;
+            double n2=(double)o2.value/(double)o2.weight;
+            if(n1<n2) return 1;
+            else if(n1>n2) return -1;
+            else return 0;
+            
+        }
+    }
+    //Function to get the maximum total value in the knapsack.
+    double fractionalKnapsack(int W, Item arr[], int n) 
+    {
+     Arrays.sort(arr,new ItemComparator());
+     double totVal=0d;
+     for(int i=0;i<n;i++){
+         if(arr[i].weight<=W){
+             totVal+=arr[i].value;
+             W-=arr[i].weight;
+             
+         }
+         else{
+             totVal+=((double)arr[i].value*W)/(double)arr[i].weight;
+            
+             break;
+             
+         }
+     }
+     return totVal;
+    }
+}
