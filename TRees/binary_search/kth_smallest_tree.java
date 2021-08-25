@@ -35,3 +35,24 @@ class Solution {
      
     }
 }
+//  or
+class Solution {
+    int r = -1;
+    public int solve(Tree root, int k) {
+        Tree res = preOrder(root, k);
+        return res.val;
+    }
+
+    public Tree preOrder(Tree root, int k) {
+        if (root == null)
+            return null;
+
+        Tree left = preOrder(root.left, k);
+        if (left != null)
+            return left;
+        r++;
+        if (r == k)
+            return root;
+        return preOrder(root.right, k);
+    }
+}
