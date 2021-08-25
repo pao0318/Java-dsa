@@ -47,3 +47,36 @@ public static void main(String ags[]) throws Exception{
         
 }
 }
+//                        idhr list
+import java.util.*;
+public class Main{
+    
+    static void addEdge(ArrayList<ArrayList<Integer>>list, int u, int v,int idx){
+        list.get(idx).add(u);
+        list.get(idx).add(v);
+        
+    }
+ 
+    public static ArrayList<ArrayList<Integer>> getMax(int[][]arr){
+
+
+    ArrayList<ArrayList<Integer>> list=new ArrayList<ArrayList<Integer>>(3);
+    for(int i=0;i<=3;i++)
+        list.add(new ArrayList<Integer>());
+        
+    for(int i=0;i<arr.length;i++)
+        addEdge(list,arr[i][1],arr[i][0],arr[i][2]);
+        
+    return list;
+}
+
+public static void main(String ags[]) throws Exception{
+  
+     int arr[][] = {{ 1000, 1030, 1},{1010, 1020, 1},{1025, 1040, 1},{1130, 1145, 2},{1130, 1140, 2 },{1150,1152,3}};
+                      
+    System.out.println(getMax(arr));                 
+
+        
+}
+}
+
