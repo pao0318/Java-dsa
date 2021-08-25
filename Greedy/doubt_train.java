@@ -1,21 +1,49 @@
 import java.util.*;
-public class Main
-{
+public class Main{
+    static getMax(int[][]arr){
+    class Pair{
+        int x;
+        int y;
+        int z;
+         public Pair(int x, int y, int z){
+            this.x=x;
+            this.y=y;
+            this.z=z;
+    }
+}
+class PairComparator implements Comparator<Pair>{
+    public int compare(Pair p1, Pair p2){
+        if(p1.y<p2.y)
+            return 1;
+        else if(p1.y>p2.y)
+            return -1;
+       
+    }
+    return 0;
+}
+Arrays.sort(arr,new PairComparator());
+int nStation=0;
+for(int i=0;i<arr.length;i++){
+    // kARTE H KUCH PRABANDH
+}
+    
 
-	public static void main(String[] args) {
-		int arr[][] ={{ 1000, 1030, 1,
+}
+public static void main(String ags[]) throws Exception{
+     Scanner sc = new Scanner(System.in);
+     int n=6;
+     int m=3;
+    Pair arr[][] = new Pair[n][m];
+     arr = {{ 1000, 1030, 1,
                       1010, 1020, 1,
-                      1000, 1020, 2,
-                      1130, 1230, 2,
-                      1200, 1230, 3,
-		               900, 1005, 1}};
-    System.out.println(maxTrains(arr));                  
-	}
-
-	static int maxTrains(int [][]arr){
-	    int n=arr.length;
-	    int m=3;
-	    
-	 
-	
+                      1025, 1040, 1,
+                      1130, 1145, 2,
+                      1130, 1140, 2 }};
+                      
+    System.out.println(getMax(arr);                 
+    
+   
+  
+        
+}
 }
