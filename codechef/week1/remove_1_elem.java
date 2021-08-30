@@ -12,22 +12,22 @@ public class Main{
             
         Collections.sort(list1);
         Collections.sort(list2);
-        int ans=list2.get(0)-list1.get(1);
-        int ans2=list2.get(0)-list1.get(0);
-        list1.remove(0);
+        int ans=Math.abs(list2.get(0)-list1.get(1));
         
         boolean flag=false;
-        for(int i=0;i<N-1;i++){
-            if(list1.contains(list2.get(i)-ans)){
-                flag=true;
-                break;
-        }
-        }
-        if(flag)
-            System.out.println(ans2);
-        else
-            System.out.println(ans);
         
+        for(int i=0;i<list2.size();i++){
+            if(list1.contains(list2.get(i)-ans)){
+                ans=list2.get(0)-list1.get(0);
+                break;
+            }
+        }
+        
+        
+        if(ans<=0)
+            ans=list2.get(0)-list1.get(0);
+            
+        System.out.println(ans);
    
             
     }
