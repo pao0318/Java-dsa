@@ -35,5 +35,15 @@ public class Main{
         Shape s;
         s=new Circle();// Polymorphic state 
         s.draw();
+        s=new Rectangle();
+        s.draw();
+        
+        s=new Polygon();
+        s.draw();
+        
+        
+        
+        
+        
     }
 }
