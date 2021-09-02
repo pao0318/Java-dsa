@@ -24,3 +24,40 @@ class Solution {
             
     }
 }
+// Ek aur tareeka
+lass Solution {
+    Map<Character, Integer> add = new HashMap<>();
+    Map<String, Integer> add2 = new HashMap<>();
+    Integer res = 0;
+    public int solve(String numeral) {
+        add.put('M', 1000);
+        add.put('D', 500);
+        add.put('C', 100);
+        add.put('L', 50);
+        add.put('X', 10);
+        add.put('V', 5);
+        add.put('I', 1);
+        add2.put("CM", 900);
+        add2.put("CD", 400);
+        add2.put("XC", 90);
+        add2.put("XL", 40);
+        add2.put("IV", 4);
+        add2.put("IX", 9);
+        char[] s = numeral.toCharArray();
+        int n = s.length;
+        for (int i = n - 1; i >= 0;) {
+            String sub = "";
+            if (i - 1 >= 0)
+                sub = numeral.substring(i - 1, i + 1);
+            if (add2.containsKey(sub)) {
+                res += add2.get(sub);
+                i -= 2;
+            } else {
+                res += add.get(s[i]);
+                i--;
+            }
+        }
+
+        return res;
+    }
+}
