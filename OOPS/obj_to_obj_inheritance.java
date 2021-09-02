@@ -8,7 +8,7 @@ abstract class Shape{
     Shape(){
         System.out.println("Shape is constructed");
     }
-    abstract void draw();
+    abstract void draw(); //no def
 }
 
 class Circle extends Shape{ //Object to Object Inheritance
