@@ -9,7 +9,7 @@ public static Node remove(Node node, int data) {
     }else{
         //work
         if(node.left!=null && node.right!=null){
-            int lmax=Math.max(node.left);
+            int lmax=max(node.left);
             node.data=lmax;
             node.left=remove(node.left,lmax);
             return node;
@@ -25,6 +25,12 @@ public static Node remove(Node node, int data) {
         }
         return node;
   }
+	
+	public static max(Node node){
+		if(node.right!=null)
+			return max(node.right);
+		return node.data;
+	}
 
 
 
