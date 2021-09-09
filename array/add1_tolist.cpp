@@ -22,3 +22,15 @@ vector<int> solve(vector<int>& n) {
     reverse(ans.begin(), ans.end());
     return ans;
 }
+// OR
+for (int i = nums.length - 1; i >= 0; i--) {
+        if (nums[i] == 9)
+            nums[i] = 0;
+        else {
+            nums[i] += 1;
+            return nums;
+        }
+    }
+    nums.insert(nums.begin(), 1);
+    return nums;
+            
