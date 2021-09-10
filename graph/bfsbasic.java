@@ -23,59 +23,66 @@ class Solution
     }
 }
 // scratch
-
-import java.io.*;
 import java.util.*;
-
-public class Main {
-   static class Edge {
-      int src;
-      int nbr;
-
-      Edge(int src, int nbr){
-         this.src = src;
-         this.nbr = nbr;
-        
-        }
+class Main{
+    int v;
+    LinkedList<Integer> adj[];
+    
+    Main(int v){
+        v=v;
+        adj=new LinkedList[v];
+        for(int i=0;i<v;i++)
+            adj[i]=new LinkedList();
     }
-    public static void main(String args[]) {
-        Scanner sc=new Scanner(System.in);
-        int vtcs=sc.nextInt();
-        ArrayList<Edge> []list=new ArrayList[vtcs];
-        for(int i=0;i<vtcs;i++)
-            list[i]=new ArrayList<>();
-            
-         int edges=sc.nextInt();
-         
-         for(int i=0;i<edges;i++){
-             int n1=sc.nextInt();
-             int n2=sc.nextInt();
-             list[n1].add(new Edge(n1,n2));
-            //  list[n2].add(new Edge(n2,n1));
-         }
-         int src=sc.nextInt();
-           bfs(src,vtcs,list);
-            
+    void addEdge(int v,int w){
+        adj[v].add(w);
     }
-    static void bfs(int src, int vtcs,ArrayList<Edge> []list){
-        boolean []visited=new boolean[vtcs];
-        Queue<Integer> pq=new LinkedList<>();
-        visited[src]=true;
-        pq.add(src);
-        while(!pq.isEmpty()){
-            src=pq.poll();
-            System.out.print(src+" ");
-            
-
-            while(list[src].nbr!=0){
-                int jai=list[src].nbr();
-                if(!visited[jai]){
-                    visited[jai]=true;
-                    pq.add(jai);
+    void bfs(int s){
+        boolean visited[]=new boolean[v];
+        LinkedList<Integer> queue=new LinkedList<Integer>();
+        visited[s]=true;
+        queue.add(s);
+        while(queue.size()>0){
+            s=queue.poll();
+            System.out.print(s+" ");
+            Iterator<Integer> itr=adj[s].listIterator();
+            while(itr.hasNext()){
+                int num=itr.next();
+                if(!visited[num]){
+                    visited[num]=true;
+                    queue.add(num);
                 }
             }
         }
-    } 
-}
+    }
     
-   
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Number of vertices");
+        int vtcs=sc.nextInt();
+        Main g=new Main(vtcs);
+        
+        System.out.println("Enter Number of edges");
+        int edges=sc.nextInt();
+    
+        int source,destination;
+        System.out.println("Enter Source <space> Destination (0-indexing)");
+        for(int j=0;j<edges;j++){
+            source=sc.nextInt();
+            destination=sc.nextInt();
+              if(source >= vtcs || destination >= vtcs){
+                System.out.println("Invalid Edge");
+                j--;
+            }
+            
+            g.addEdge(source, destination);
+        }
+        System.out.println("Enter starting vertex");
+        int start = sc.nextInt();
+        
+        System.out.println("Following is Breadth First Traversal, starting from vertex " + start); 
+  
+        g.bfs(start); 
+        
+    }       
+}
