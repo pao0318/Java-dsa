@@ -23,3 +23,32 @@ class Solution {
        return true;
     }
 }
+// OR BEST
+import java.util.*;
+
+class Solution {
+    public boolean solve(String dictionary, String s) {
+        Map<Character, Integer> map = new HashMap();
+        int dLen = dictionary.length();
+        for (int i = 0; i < dLen; i++) {
+            if (map.containsKey(dictionary.charAt(i))) {
+                continue;
+            }
+            map.put(dictionary.charAt(i), i);
+        }
+        int index = 0, sLen = s.length(), minVal = Integer.MIN_VALUE;
+        for (int i = 0; i < sLen; i++) {
+            if (!map.containsKey(s.charAt(i))) {
+                continue;
+            }
+            if (map.containsKey(s.charAt(i))) {
+                index = map.get(s.charAt(i));
+            }
+            if (index < minVal) {
+                return false;
+            }
+            minVal = Math.max(index, minVal);
+        }
+        return true;
+    }
+}
