@@ -1,10 +1,10 @@
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 public class Main{
 	public static int Fibo(int n, int []ar){
 		if(n==0||n==1)
-			return n;
-			
+			return n;	
 		if(ar[n]!=0)
 			return ar[n];
 			
@@ -13,7 +13,6 @@ public class Main{
 		return fib;
 
 	}
-
 	public static void main(String args[]) throws Exception{
 		Scanner sc=new Scanner(System.in);
 		int n=sc.nextInt();
