@@ -12,10 +12,9 @@ class Solution
             curr=next;
             len++;
         }
-        if(next!=null){
-            Node res=reverse(next,k);
-            node.next=res;
-        }
+        if(next!=null)
+            node.next=reverse(next,k);
+        
         return prev;
     }
 }
