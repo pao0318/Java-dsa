@@ -1,44 +1,41 @@
-import java.util.*;
-
-/**
- * class LLNode {
- *   int val;
- *   LLNode next;
- * }
- */
-class Solution {
-    public boolean solve(LLNode node) {
-        LLNode slow=node;
-        LLNode fast=node;
-
+class Solution
+{
+    //Function to check whether the list is palindrome.
+    boolean isPalindrome(Node head) 
+    {
+        Node slow=head, fast=head;
+        Node mid=null;
         while(fast!=null && fast.next!=null){
+            
             slow=slow.next;
+            mid=slow;
             fast=fast.next.next;
         }
-        if(fast!=null)
-            slow=slow.next;
-
-        slow=rev(slow);
-        fast=node;    
-
-        while(slow!=null){
-            if(fast.val!=slow.val)
+        
+    
+        Node left1=reverse(mid);
+        
+        Node ptr=head;
+        while(left1!=null){
+            if(left1.data!=ptr.data)
                 return false;
-            slow=slow.next;
-            fast=fast.next;    
-
+            left1=left1.next;
+            ptr=ptr.next;
         }
         return true;
-    }
-    public LLNode rev(LLNode node){
-        LLNode prev=null;
-        while(node!=null){
-            LLNode next=node.next;
-            node.next=prev;
-            prev=node;
-            node=next;
+        
+        
+    }   
+
+    Node reverse(Node node){
+        Node curr=node, next=node;
+        Node prev=null;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
         }
         return prev;
     }
-    
 }
