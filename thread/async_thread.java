@@ -1,7 +1,7 @@
 class Printer{
     void printDoc(int num, String docname){
         for(int i=1;i<=10;i++){
-            System.out.println(">>Printing "+docname+" "+i);
+            System.out.println(">Printing "+docname+" "+i);
         }
     }
 }
