@@ -67,3 +67,44 @@ public class Main{
         
     
 }
+// Iterative INORDER
+
+/* A Binary Tree node 
+
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+} */
+class Solution
+{
+    // Return a list containing the inorder traversal of the given tree
+    ArrayList<Integer> inOrder(Node root)
+    {
+        ArrayList<Integer> res=new ArrayList<>();
+        Stack<Node> s=new Stack<>();
+    
+        Node temp=root;
+        while(!s.isEmpty()||temp!=null){
+        
+            if(temp!=null){
+                s.push(temp);
+                temp=temp.left;
+            }
+            else{
+                temp=s.peek();
+                s.pop();
+                res.add(temp.data);
+        
+                temp=temp.right;
+            }
+        }
+        
+       return res;   
+    
+    }
+    
+}
