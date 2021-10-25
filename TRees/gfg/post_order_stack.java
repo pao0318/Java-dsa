@@ -10,24 +10,22 @@ class Node{
 }
 class Main{
     public static void postorder(Node root){
-        if(root==null)
-            return;
-        Stack<Node> stack=new Stack();
-        Stack<Integer> stack2=new Stack();
-        stack.push(root);
+        ArrayList<Integer> res=new ArrayList<>();
+        Stack<Node> stack=new Stack<>();
+        
+        stack.push(node);
         while(!stack.isEmpty()){
-            
             Node temp=stack.pop();
-            stack2.push(temp.data);
+            res.add(temp.data);
+            
             if(temp.left!=null)
                 stack.push(temp.left);
             if(temp.right!=null)
                 stack.push(temp.right);
                 
-            
         }
-        while(!stack2.isEmpty())
-            System.out.print(stack2.pop()+" ");
+        while(!stack.isEmpty())
+            System.out.print(stack.pop()+" ");
     }
     
     
