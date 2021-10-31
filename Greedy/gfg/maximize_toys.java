@@ -3,11 +3,11 @@ class Solution{
     static int toyCount(int N, int K, int arr[])
     {
         Arrays.sort(arr);
-        int count=0;
+        int count1=0;
         for(int i=0;i<N;i++){
             if(arr[i]<=K){
                 K-=arr[i];
-                count++;
+                count1++;
             }
             else
                 break;
