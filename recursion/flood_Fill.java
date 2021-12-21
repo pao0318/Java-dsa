@@ -1,31 +1,30 @@
-// https://www.pepcoding.com/resources/online-java-foundation/recursion-backtracking/flood-fill-official/ojquestion
-import java.util.*;
-public class Main{
-    public static void main(String args[]) throws Exception{
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        int m=sc.nextInt();
-        int[][]arr1=new int[n][m];
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                arr1[i][j]=sc.nextInt();
+class Solution {
+    int len=0;
+    public int maxAreaOfIsland(int[][] grid) {
+     int max=Integer.MIN_VALUE;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]==1){
+                    len=0;
+                    dfs(grid,i,j);
+                    max=Math.max(max,len);
+                }
             }
         }
-        boolean[][] visited= new boolean[n][m];
-        floodfill(arr1,0,0,"",visited);
+        return Math.max(max,0);
+            
+        
     }
-    public static void floodfill(int[][]arr, int row, int col, String psf, boolean[][] visited){
-        if(row<0||col<0|| row==arr.length|| col==arr[0].length|| arr[row][col]==1||visited[row][col]==true)
+    public void dfs(int[][]grid, int r, int c){
+        if(r<0||c<0 || r>=grid.length||c>=grid[0].length||grid[r][c]==0)
             return;
-        if(row==arr.length-1 && col==arr[0].length-1){
-            System.out.println(psf);
-            return;
-        }
-        visited[row][col]=true;
-        floodfill(arr,row-1,col,psf+"t",visited);
-        floodfill(arr,row,col-1,psf+"l",visited); 
-        floodfill(arr,row+1,col,psf+"d",visited); 
-        floodfill(arr,row,col+1,psf+"r",visited); 
-        visited[row][col]=false;
+        
+        len++;
+        grid[r][c]=0;
+        
+        dfs(grid,r-1,c);
+        dfs(grid,r,c-1);
+        dfs(grid,r+1,c);
+        dfs(grid,r,c+1);
     }
 }
