@@ -1,4 +1,3 @@
-// https://leetcode.com/problems/symmetric-tree/
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -16,13 +15,18 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        return isMirror(root,root);
+        return symmetry(root,root);
+        
     }
-    public boolean isMirror(TreeNode t1, TreeNode t2){
-        if(t1==null && t2==null)
+    public boolean symmetry(TreeNode root, TreeNode root1){
+        if(root==null&&root1==null)
             return true;
-        if(t1==null||t2==null)
+        if(root==null||root1==null)
             return false;
-        return t1.val==t2.val&&isMirror(t1.left,t2.right)&&isMirror(t1.right,t2.left);
+        if(root.val!=root1.val)
+            return false;
+        return symmetry(root.left,root1.right)&&symmetry(root.right,root1.left);
+        
+        
     }
 }
