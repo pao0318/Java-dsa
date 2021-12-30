@@ -1,28 +1,33 @@
+// 
 class Solution {
     public static ArrayList<String> findPath(int[][] m, int n) {
-      ArrayList<String> list=new ArrayList<String>();
- 
+        // Your code here
+        int r=0;
+        int c=0;
     
-        dfs(0,0,n,m,list,"");
+        String ele;
+        ArrayList<String>list=new ArrayList<>();
+        if(m[0][0]==1){
+            ele="";
+            path(list,m,n,r,c,ele);
+        }
+        Collections.sort(list);
         return list;
-    }
-    
-    public static void dfs(int i,int j,int n,int m[][],ArrayList<String> list,String s){
         
-        if(i<0 || j<0 || i>=n ||j>=n || m[i][j]==0) return;
-        if(i==n-1 && j==n-1){
-            list.add(s);
+    }
+    public static void path(ArrayList<String>list, int[][]m, int n, int r, int c,String ele){
+        if(r<0||c<0||r>=n||c>=n||m[r][c]==0)
+            return;
+            
+        if(r==n-1&&c==n-1){
+            list.add(ele);
             return;
         }
-            m[i][j]=0;
-            dfs(i+1,j,n,m,list,s+"D");
-        
-            dfs(i,j-1,n,m,list,s+"L");
-         
-            dfs(i,j+1,n,m,list,s+"R");
-      
-            dfs(i-1,j,n,m,list,s+"U");
-            m[i][j]=1;
-       
+        m[r][c]=0;
+        path(list,m,n,r+1,c,ele+"D");    
+        path(list,m,n,r-1,c,ele+"U"); 
+        path(list,m,n,r,c-1,ele+"L"); 
+        path(list,m,n,r,c+1,ele+"R"); 
+        m[r][c]=1;
     }
 }
