@@ -1,26 +1,3 @@
-// https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-binary-tree/1
-class Solution
-{
-    //Function to return the lowest common ancestor in a Binary Tree.
-	Node lca(Node root, int n1,int n2)
-	{
-	    if(root==null)
-	        return null;
-	   if(root.data==n1|| root.data==n2)
-	    return root;
-        Node l=lca(root.left,n1,n2);
-        Node r=lca(root.right,n1,n2);
-        
-        if(l!=null && r!=null)
-            return root;
-        else if(l==null)
-            return r;
-        else
-            return l;
-	    
-	}
-}
-// Scratch
 import java.util.*;
 class Node{
     int data;
@@ -32,55 +9,39 @@ class Node{
         right=null;
     }
 }
-class Main{
+
+public class LCA {
+
     static Node root;
-    Main(int data){
-        root=new Node(data);
-    }
-    Main(){
-        root=null;
-    }
-    public static void main(String args[]) throws Exception{
-        
-        Main obj=new Main();
-        obj.root=new Node(100);
-        obj.root.left=new Node(7);
-        obj.root.right=new Node(10);
-        
-        obj.root.left.left=new Node(6);
-        obj.root.left.right=new Node(11);
-        
-        obj.root.right.left=new Node(4);
-        obj.root.right.right=new Node(3);
-        
-        obj.root.right.right.left=new Node(2);
-        obj.root.right.right.right=new Node(1);
-        
-        obj.root.right.right.left.left=new Node(8);
-        obj.root.right.right.left.right=new Node(5);
-        
-        int n1=1;
-        int n2=8;
-        
-        System.out.println(lcs(root,n1,n2).data);
-   
-    }
-    public static Node lcs(Node root, int n1, int n2){
+    public static int findlca(Node root,Node a, Node b){
         if(root==null)
-            return null;
-        if(root.data==n1|| root.data==n2)
-            return root;
-        Node l=lcs(root.left, n1, n2);
-        Node r=lcs(root.right, n1,n2);
-        
-        if(l!=null && r!=null)
-            return root;
-        
-        else if(l==null)
-            return r;
-        else
-            return l;
- 
-        
+            return 0;
+        if(a==null||b==null)
+            return 0;
+        if(root.data==a.data|| root.data==b.data)
+            return root.data;
+        int x1= findlca(root.left,a,b);
+        int x2= findlca(root.right,a,b);
+        if(x1!=0 && x2!=0)
+            return root.data;
+        return (x1!=0)?x1:x2;
+
+    }
+
+    public static  void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        LCA tree = new LCA();
+        tree.root= new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);
+
+
+        int c=findlca(root, tree.root.right ,tree.root.left.left);
+        System.out.println(c);
+
     }
 }
