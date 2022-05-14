@@ -1,20 +1,14 @@
 class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        
         boolean []vis= new boolean[V];
-    
-        
         for(int i=0;i<V;i++){
             if(vis[i]==false){
                 if (checkCycle(i,-1,vis,adj))
                     return true;
             }
         }
-        
-        return false;
-        
-        
+       return false;
     }
     
     public boolean checkCycle(int node, int parent,boolean[]vis,ArrayList<ArrayList<Integer>> adj ){
@@ -33,8 +27,6 @@ class Solution {
                 return true;
         }
         return false;
-        
-        
         
     }
 }
