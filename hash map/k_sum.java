@@ -1,20 +1,19 @@
-// return true or false
-import java.util.*;
 class Solution {
-    public boolean solve(int[] nums, int k) {
-        if(nums.length==0||nums==null)
-            return false;
-
-            Map<Integer, Integer> map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            int sum=nums[i];
-            if(map.containsKey(k-sum))
-                return true;
+    int getPairsCount(int[] arr, int n, int k) {
         
-            map.put(sum,i);
-                    
+        HashMap<Integer,Integer> map= new HashMap<>();
+        
+        int c=0;
+       
+        
+        for(int i=0;i<n;i++){
+            if(map.containsKey(k-arr[i]))
+                c+=map.get(k-arr[i]);
+            
+            map.put(arr[i], map.getOrDefault(arr[i],0)+1);
+            
         }
-        return false;
-    }
         
+        return c;
     }
+}
