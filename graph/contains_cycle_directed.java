@@ -61,3 +61,42 @@ class Main{
     }
     
 }
+
+
+
+// or gfg toposort
+class Solution {
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        int[]indegree = new int[V];
+        
+        
+        for(int i=0;i<V;i++){
+            for(Integer it: adj.get(i))
+                indegree[it]+=1;
+        }
+        
+        Queue<Integer> pq= new LinkedList<>();
+        
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0)
+                pq.add(i);
+        }
+        
+        int cnt=0;
+        while(!pq.isEmpty()){
+            Integer temp=pq.poll();
+            cnt++;
+            for(Integer c: adj.get(temp)){
+                indegree[c]--;
+                if(indegree[c]==0)
+                    pq.add(c);
+                
+            }
+        }
+        if(cnt==V) return false;
+        return true;
+        
+    }
+   
+}
