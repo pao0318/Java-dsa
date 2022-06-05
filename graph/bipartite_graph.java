@@ -4,9 +4,25 @@ import java.util.*;
 public class Main
 {
     
-    boolean dfs(int[]color, int i,ArrayList<ArrayList<Integer>> adj){
+    boolean bfs(int[]color, int i,ArrayList<ArrayList<Integer>> adj){
         
         Queue<Integer> pq= new LinkedList<>();
+        pq.add(i);
+        color[i]=1;
+        
+        while(!pq.isEmpty()){
+            Integer temp=pq.poll();
+            
+            for(Integer curr: adj.get(temp)){
+                if(color[curr]==-1){
+                    color[curr]=1-color[temp];
+                    pq.add(curr);
+                }
+                else if(color[curr]==color[temp])
+                    return false;
+            }
+        }
+        return true;
         
         
     }
@@ -34,6 +50,7 @@ public class Main
 	    
 	    ArrayList<ArrayList<Integer>> adj= new ArrayList<>();
 	    int n=8;
+	    adj.add(new ArrayList<>());
 	    for(int i=1;i<=n;i++)
 	        adj.add(new ArrayList<>());
 	   
