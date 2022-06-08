@@ -1,68 +1,73 @@
 import java.util.*;
 
-class Solution {
-    private static class VertexNode {
-        private int node;
-        private int dist;
-        public VertexNode(int i, int d) {
-            this.node = i;
-            this.dist = d;
-        }
+class Pair implements Comparable<Pair>{
+    int v;
+    int weight;
+    Pair(int v, int weight){
+        this.v=v;
+        this.weight=weight;
     }
-    private Map<Integer, List<int[]>> graph = new HashMap();
-    private Set<Integer> visited = new HashSet();
-    private PriorityQueue<VertexNode> minHeap =
-        new PriorityQueue<>(Comparator.comparingInt(a -> a.dist));
-    private int nodes;
-    private static final int MAX_DIST = Integer.MAX_VALUE;
-    public int solve(int[][] edges, int start, int end) {
-        if (edges == null || edges.length == 0)
-            return -1;
-        if (start == end)
-            return 0;
-        Set<Integer> nodeSet = new HashSet<>();
-
-        for (int[] edge : edges) {
-            nodeSet.add(edge[0]);
-            nodeSet.add(edge[1]);
-            addEdge(edge[0], new int[] {edge[1], edge[2]});
-        }
-        nodes = nodeSet.size();
-        int dist[] = new int[nodes + 1];
-        Arrays.fill(dist, MAX_DIST);
-
-        // init dijkstra
-        minHeap.add(new VertexNode(start, 0));
-        dist[start] = 0;
-
-        // run dijkstra
-        while (!minHeap.isEmpty()) {
-            VertexNode vertexNode = minHeap.poll();
-            int node = vertexNode.node;
-            if (visited.contains(node))
-                continue;
-            ;
-
-            visited.add(node);
-            if (graph.containsKey(node)) {
-                for (int[] adj : graph.get(node)) {
-                    int adjVertex = adj[0];
-                    int weight = adj[1];
-                    if (!visited.contains(adjVertex) && dist[node] + weight < dist[adjVertex]) {
-                        dist[adjVertex] = dist[node] + weight;
-                        minHeap.offer(new VertexNode(adjVertex, dist[adjVertex]));
-                    }
+    public int compareTo(Pair o){
+        return weight-o.weight;
+    }
+    
+}
+class Main{
+    
+    static void addEdge(ArrayList<ArrayList<Pair>> graph, int u, int v, int weight){
+        graph.get(u).add(new Pair(v,weight));
+        graph.get(v).add(new Pair(u,weight));
+    }
+    
+    
+    void shortestPath(ArrayList<ArrayList<Pair>> graph, int source, int n){
+        int[]dist= new int[n];
+        PriorityQueue<Pair> pq= new PriorityQueue<>();
+        
+        for(int i=0;i<n;i++)
+            dist[i]=Integer.MAX_VALUE;
+        
+        dist[source]=0;
+        pq.add(new Pair(source,0));
+        
+        while(!pq.isEmpty()){
+            Pair p=pq.poll();
+            
+            for(Pair nbr:graph.get(p.v)){
+                if(dist[nbr.v]>dist[p.v]+nbr.weight){
+                    dist[nbr.v]=dist[p.v]+nbr.weight;
+                    pq.add(new Pair(nbr.v,dist[nbr.v]));
                 }
             }
         }
-        if (!visited.contains(end))
-            return -1;
-        return dist[end];
+        
+        for(int i=0;i<n;i++)
+            System.out.println(dist[i]+" ");
+        
+   
     }
+    
+    
+    
+    public static void main(String args[]){
+        Main obj= new Main();
+        
+        ArrayList<ArrayList<Pair>> graph= new ArrayList<>();
+        int  n=6;
+        int source=1;
+        for(int i=0;i<n;i++)
+            graph.add(new ArrayList<Pair>());
+            
+        addEdge(graph,1,2,2);
+        addEdge(graph,2,5,5);
+        addEdge(graph,1,4,1);
+        addEdge(graph,4,3,3);
+        addEdge(graph,3,5,1);
+        addEdge(graph,3,2,4);
+ 
+        obj.shortestPath(graph,source,n);
 
-    private void addEdge(int u, int[] adj) {
-        List<int[]> adjList = graph.getOrDefault(u, new ArrayList());
-        adjList.add(adj);
-        graph.put(u, adjList);
     }
+    
+    
 }
