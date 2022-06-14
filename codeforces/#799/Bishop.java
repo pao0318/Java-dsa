@@ -14,10 +14,10 @@ public class Bishop {
             for(int x=1;x<7;x++){
                 for(int y=1;y<7;y++){
                     if(board[x][y]=='#' && board[x+1][y+1]=='#' && board[x+1][y-1]=='#' && board[x-1][y-1]=='#')
-                        System.out.println(y+1+" "+ x+1);
+                        System.out.println((x+1)+" "+ (y+1));
                 }
             }
-            
+
 
             }
 
