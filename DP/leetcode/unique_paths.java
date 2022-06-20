@@ -1,25 +1,31 @@
 // https://leetcode.com/problems/unique-paths/
-class Solution {
-  
-    public int uniquePaths(int m, int n) {
-        if(m==1)
-            return 1;
-        
-        if(n ==1)
-            return 1;
-      
-        int[][]dp= new int[m+1][n+1];
-        dp[0][0]=1;
-        for(int i=1;i<m;i++)
-            dp[i][0]=dp[i-1][0];
-        for(int i=1;i<n;i++)
-            dp[0][i]=dp[0][i-1];
-        
-        for(int i=1;i<m;i++){
-            for(int j=1;j<n;j++){
-                dp[i][j]=dp[i-1][j]+dp[i][j-1];
-            }
+import java.util.*;
+public class countpaths {
+    public static void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        int r= sc.nextInt();
+        int c=sc.nextInt();
+
+
+        int arr[][]=new int[r][c];
+
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++)
+                arr[i][j]=-1;
         }
-        return dp[m-1][n-1];
+
+        System.out.println(countunique(arr,0,0,r,c));
+
+    }
+    public static int countunique(int [][]arr, int i, int j, int r, int c){
+        if(i==r-1 && j==c-1)
+            return 1;
+        if(i>=r || j>=c)
+            return 0;
+        if(arr[i][j]!=-1)
+            return arr[i][j];
+        else
+            return arr[i][j]=countunique(arr,i+1,j,r,c)+countunique(arr,i,j+1,r,c);
+
     }
 }
