@@ -1,75 +1,52 @@
 import java.util.*;
-import java.io.*;
+public class inversion{
+    public static void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[]arr= new int[n];
 
-public class Main {
+        for(int i=0;i<n;i++)
+            arr[i]=sc.nextInt();
 
-    static int count = 0;
-    public static int[] merge(int[]left,int[]right) {
-        
-        int i=0;
-        int j=0;
-        int k=0;
-        int[]merged = new int[left.length + right.length];
-        
-        while(i < left.length && j < right.length) {
-            if(left[i] <= right[j]) {
-                merged[k] = left[i];
-                k++;
-                i++;
+        System.out.println(countinversion(arr,0,n-1));
+    }
+
+    public static int countinversion(int[]arr, int l, int r){
+        int count=0;
+        if(l<r){
+            int mid=(l+r)/2;
+
+            count+=countinversion(arr,l,mid);
+            count+=countinversion(arr,mid+1,r);
+
+            count+=merge(arr,l,mid,r);
+
+        }
+        return count;
+
+    }
+    public static int merge(int[]arr, int l, int mid,int r){
+        int[]left= Arrays.copyOfRange(arr,l,mid+1);
+
+        int[]right=Arrays.copyOfRange(arr,mid+1,r+1);
+
+        int i=0,j=0,k=l,swaps=0;
+        while(i<left.length && j<right.length){
+            if(left[i]<=right[j])
+                arr[k++]=left[i++];
+            else{
+                arr[k++]=right[j++];
+                swaps+=mid+1-(l+i);
             }
-            else {
-                count += (left.length-i);
-                merged[k] = right[j];
-                k++;
-                j++;
-            }
         }
-        
-        while(i < left.length) {
-           merged[k] = left[i];
-           k++;
-           i++; 
-        }
-        
-        while(j < right.length) {
-            merged[k] = right[j];
-            k++;
-            j++;
-        }
-        
-        return merged;
+
+        while(i<left.length)
+            arr[k++]=left[i++];
+        while(j<right.length)
+            arr[k++]=right[j++];
+
+        return swaps;
+
     }
 
-    public static int[] mergeSort(int arr[],int lo,int hi) {
-        if(lo == hi) {
-            int[]ba = new int[1];
-            ba[0] = arr[lo];
-            return ba;
-        }
-        
-        int mid = (lo + hi)/2;
-        
-        int[]left = mergeSort(arr,lo,mid);
-        int[]right = mergeSort(arr,mid+1,hi);
-        
-        int[]merged = merge(left,right);
-        
-        return merged;
-    }
-
-    public static void main(String[]args) {
-        //write your code here
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-
-        int[]arr = new int[n];
-
-        for(int i=0; i < n;i++) {
-            arr[i] = sc.nextInt();
-        }
-
-        int[]ans = mergeSort(arr,0,n-1);
-        System.out.println(count);
-    }
 }
-                                
