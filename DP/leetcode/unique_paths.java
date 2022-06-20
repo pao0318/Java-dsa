@@ -29,3 +29,27 @@ public class countpaths {
 
     }
 }
+
+
+// Or
+
+
+import java.util.*;
+public class countpaths {
+    public static void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        int r= sc.nextInt();
+        int c=sc.nextInt();
+
+        int N=r+c-2;
+        int m=r-1;
+
+        double ans=1.0;
+        for(int i=1;i<=m;i++)
+            ans=ans*(N-m+i)/i;
+
+        System.out.println(ans);
+
+    }
+
+}
