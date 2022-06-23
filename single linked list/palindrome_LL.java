@@ -1,45 +1,44 @@
-class Solution
-{
-    //Function to check whether the list is palindrome.
-    boolean isPalindrome(Node head) 
-    {
-        Node slow=head, fast=head;
-        Node mid=null;
-        while(fast!=null && fast.next!=null){
-            
-            slow=slow.next;
-            mid=slow;
-            fast=fast.next.next;
-        }
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode secA=head;
+        ListNode mid=getmid(head);
+        ListNode secB=reverse(mid);
         
-    
-        Node left1=reverse(mid);
-        
-        Node ptr=head;
-        while(left1!=null){
-            if(left1.data!=ptr.data)
+        while(secB!=null){
+            if(secA.val!=secB.val)
                 return false;
-            left1=left1.next;
-            ptr=ptr.next;
+            secA=secA.next;
+            secB=secB.next;
         }
         return true;
+    }
+    public ListNode reverse(ListNode head){
+        if(head==null)
+            return head;
         
-        
-    }   
-
-    Node reverse(Node node){
-        Node curr=node, next=node;
-        Node prev=null;
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next=head.next;
         while(curr!=null){
-            next=curr.next;
             curr.next=prev;
             prev=curr;
             curr=next;
+            if(next!=null)
+                next=next.next;
         }
         return prev;
     }
-}
 
+    public ListNode getmid(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head;
+         while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+}
 
 // OR
 /**
