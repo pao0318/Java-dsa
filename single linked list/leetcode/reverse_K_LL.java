@@ -40,5 +40,43 @@ class Solution {
 }
     
     
+// or in array size of k
+import java.util.* ;
+import java.io.*; 
 
+
+public class Solution {
+	public static Node getListAfterReverseOperation(Node head, int n, int b[]) {
+	    if(head==null)
+            return head;
+        return helper(head,n,b,0);
+        
+	}
+    
+    public static Node helper(Node head, int n, int[]b,int idx){
+        if(head==null || idx>=n)
+            return head;
+        
+        int k=b[idx];
+        int cnt=0;
+        
+        if (k == 0) {
+            return helper(head, n, b, idx + 1);
+        }
+        Node curr=head;
+        Node next=null;
+        Node prev=null;
+        while(curr!=null && cnt<k){
+            next=curr.next;
+            curr.next=prev;
+            cnt++;
+            prev=curr;
+            curr=next;
+        }
+        head.next=helper(next,n,b,idx+1);
+        return prev;
+
+        
+    }
+}
  
