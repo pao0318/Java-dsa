@@ -37,7 +37,7 @@ class Solution {
                 if(new_x<0|| new_x>=r || new_y<0 || new_y>=c)
                     continue;
                 
-                if(i==free_dir && cost[new_x][new_y]>cost[i][j]){
+                if(k==free_dir && cost[new_x][new_y]>cost[i][j]){
                     cost[new_x][new_y]=cost[i][j];
                     dq.addFirst(new Pair(new_x,new_y));
                 }
