@@ -1,47 +1,55 @@
+// https://leetcode.com/problems/rotting-oranges/submissions/
+class Pair{
+    int x;
+    int y;
+    int w;
+    Pair(int x,int y, int w){
+        this.x=x;
+        this.y=y;
+        this.w=w;
+    }
+}
+
 class Solution {
+    int [][]dirs= new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
     public int orangesRotting(int[][] grid) {
-        int[][]dir={{1,0},{0,1},{-1,0},{0,-1}};
         
-        Queue<Pair> pq=new LinkedList<>();
-        
-        for(int i=0;i<grid.length;i++){
-            for(int j=0;j<grid[0].length;j++){
+        int r=grid.length;
+        int c=grid[0].length;
+        Queue<Pair>pq= new LinkedList<>();
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
                 if(grid[i][j]==2)
                     pq.add(new Pair(i,j,0));
+                
             }
         }
         int val=0;
-        while(pq.size()>0){
-            Pair rem=pq.poll();
-            for(int i=0;i<dir.length;i++){
-                int r=rem.x+dir[i][0];
-                int c=rem.y+dir[i][1];
-                val=rem.val;
-                if(r>=0&&c>=0&&r<grid.length&&c<grid[0].length&&grid[r][c]==1){
-                    grid[r][c]=2;
-                    pq.add(new Pair(r,c,rem.val+1));
-                }
+        while(!pq.isEmpty()){
+            Pair p=pq.poll();
+            for(int k=0;k<dirs.length;k++){
+                int new_x=p.x+dirs[k][0];
+                int new_y=p.y+dirs[k][1];
+                val=p.w;
+                
+                if(new_x<0 || new_x>=r||new_y<0 || new_y>=c ||grid[new_x][new_y]==0 || grid[new_x][new_y]==2)
+                    continue;
+                
+                grid[new_x][new_y]=2;
+                pq.add(new Pair(new_x,new_y,val+1));
             }
-            
         }
-        for(int i=0;i<grid.length;i++){
-            for(int j=0;j<grid[0].length;j++){
+        
+        
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
                 if(grid[i][j]==1)
-                    return -1;
+                 return -1;
             }
         }
+        
         return val;
-    }
-    
-    
-    class Pair{
-        int x;
-        int y;
-        int val;
-        Pair(int x, int y,int val){
-            this.x=x;
-            this.y=y;
-            this.val=val;
-        }
+        
     }
 }
+
