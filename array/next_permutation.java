@@ -1,27 +1,29 @@
+// https://leetcode.com/problems/next-permutation/submissions/
 class Solution {
-    public void nextPermutation(int[] nums) {
-        int idx=-1;
-        int n=nums.length;
-        for(int i=n-1;i>0;i++){
-            if(nums[i]>nums[i-1]){
-                idx=i;
-                break;
-            }
-        }
-        if(idx==-1){
-            reverse(0,n-1);
-        }
-        else{
-        int prev=idx;
-        for(int i=idx+1;i<n;i++){
-            if(nums[i]>nums[idx-1] && nums[i]<=nums[prev])
-                prev=i;
-            
-        }
-        swap(nums[prev],nums[idx-1]);
-        reverse(idx, n-1);
+    public void swap(int[]nums,int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
     }
+    public void reverse(int[]nums, int first, int last){
+        while(first<=last)
+            swap(nums,first++,last--);
         
     }
-//     Create custom function for reverse and swap
+    
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        int i=n-2;
+        while(i>=0 && nums[i]>=nums[i+1])
+            i--;
+        
+        if(i>=0){
+            int j=n-1;
+            while(nums[j]<=nums[i])
+                j--;
+            swap(nums,i,j);
+        }
+        reverse(nums,i+1,n-1);
+        
+    }
 }
