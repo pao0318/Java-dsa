@@ -39,3 +39,38 @@ public class Solution {
 
 
 // Dp approach
+public class Solution {	
+	public static String longestPalinSubstring(String str) {
+		
+        int n=str.length();
+        boolean [][]dp= new boolean[n][n];
+        int start=0;
+        int end=0;
+        
+        for(int i=0;i<n;i++){
+            for(int j=i;j>=0;j--){
+                boolean flag=str.charAt(i)==str.charAt(j);
+                
+                if(i==j)
+                    dp[i][j]=true;
+                
+                else if(i-j==1)
+                    dp[i][j]=flag;
+                
+                else if(flag && dp[i-1][j+1])
+                    dp[i][j]=true;
+                
+                if(dp[i][j] && i-j>end-start){
+                    end=i;
+                    start=j;
+                }
+                
+            }
+        }
+        
+return str.substring(start,end+1);
+	}
+    
+    
+}
+
