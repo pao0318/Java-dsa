@@ -1,5 +1,38 @@
 // https://www.codingninjas.com/codestudio/problems/893000?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=0
 
+class Solution {
+    public static int minChar(String str) {
+        int n=str.length();
+       int left=0;
+       int added=0;
+       int right=str.length()-1;
+       
+       while(left<right){
+           
+           if(str.charAt(left)==str.charAt(right)){
+               left++;
+               right--;
+           }
+           
+           else{
+               left=0;
+               added=n-right;
+               
+              if(str.charAt(left)==str.charAt(right)){
+                  added--;
+                  left++;
+              }
+               right--;
+           }
+       }
+       return added;
+    }
+}
+
+
+
+// Ek aur
+
 public class Solution {
     static boolean ispalindrome(String s) {
         int l = s.length();
