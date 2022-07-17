@@ -1,4 +1,3 @@
-// https://leetcode.com/problems/balanced-binary-tree/
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -16,25 +15,19 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-  if (root == null)
-            return true;
-        return isHeightBalanced(root) != -1;
+        return dfs(root)!=-1;
+        
     }
-
-    private int isHeightBalanced(TreeNode root) {
-        if (root == null)
+    public int dfs(TreeNode root){
+        if(root==null)
             return 0;
-
-        int leftHeight = isHeightBalanced(root.left);
-        if (leftHeight < 0)
+        
+        int lh=dfs(root.left);
+        int rh=dfs(root.right);
+        if(lh==-1 || rh==-1)
             return -1;
-        int rightHeight = isHeightBalanced(root.right);
-        if (rightHeight < 0)
+        if(Math.abs(lh-rh)>1)
             return -1;
-
-        if (Math.abs(leftHeight - rightHeight) > 1)
-            return -1;
-
-        return 1 + Math.max(leftHeight, rightHeight);
+        return 1+Math.max(lh,rh);
     }
 }
