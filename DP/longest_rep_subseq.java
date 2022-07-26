@@ -1,42 +1,25 @@
 // Java program to find the longest
 // repeating subsequence
-import java.io.*;
-import java.util.*;
 
-class LRS
-{
-	// Function to find the longest repeating subsequence
-	static int findLongestRepeatingSubSeq(String str)
-	{
-		int n = str.length();
+// Recursion
+public class Solution {
+    public int anytwo(String A) {
+         int x= backtrack(A,A.length(),A.length());
+         return x<=1?0:1;
+    }
+    
+     public int backtrack(String A, int n,int m){
 
-		// Create and initialize DP table
-		int[][] dp = new int[n+1][n+1];
+        if(n==0||m==0)
+            return 0;
+        if(A.charAt(n-1)==A.charAt(m-1) && m!=n)
+            return 1+backtrack(A,n-1,m-1);
+        else
+            return Math.max(backtrack(A,n-1,m),backtrack(A,n,m-1));
 
-		// Fill dp table (similar to LCS loops)
-		for (int i=1; i<=n; i++)
-		{
-			for (int j=1; j<=n; j++)
-			{
-				// If characters match and indexes are not same
-				if (str.charAt(i-1) == str.charAt(j-1) && i!=j)
-					dp[i][j] = 1 + dp[i-1][j-1];		
-					
-				// If characters do not match
-				else
-					dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
-			}
-		}
-		return dp[n][n];
-	}
-	
-	// driver program to check above function
-	public static void main (String[] args)
-	{
-		String str = "aabb";
-		System.out.println("The length of the largest subsequence that"
-			+" repeats itself is : "+findLongestRepeatingSubSeq(str));
-	}
+
+    }
 }
 
-// This code is contributed by Pramod Kumar
+// DP
+
