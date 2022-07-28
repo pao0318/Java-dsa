@@ -26,3 +26,32 @@ public class Main{
         return overallmax;
     }
 }
+
+// NLOGN
+
+
+import java.util.*;
+
+class Solution {
+    public int solve(int[] nums) {
+        int[] sequence = new int[nums.length];
+        int len = 0;
+        for (int num : nums) {
+            int i = findInsertionIndex(sequence, num, len-1);
+            sequence[i] = num;
+            if (i == len) len++;
+        }
+        return len;
+    }
+
+    private static int findInsertionIndex(int[] array, int target, int high) {
+        int low = 0;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (array[mid] >= target) high = mid - 1;
+            else low = mid + 1;
+        }
+        return low;
+    }
+}
+   
