@@ -9,18 +9,18 @@ import java.util.*;
  */
 class Solution {
     public int solve(LLNode node, int k) {
-        LLNode head=node;
-        while(k-->0)
-            head=head.next;
-    
-    
-    LLNode curr=node;
-    while(head!=null && head.next!=null){
-        head=head.next;
-        curr=curr.next;
-    }
-    return curr.val;
+        LLNode slow=node;
+      
+       
+        LLNode fast=node;
+        while(fast.next!=null && k-->0)
+            fast=fast.next;
+        
+        while(fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        return slow.val;
 
     }
 }
-
