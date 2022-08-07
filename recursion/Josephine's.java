@@ -1,28 +1,26 @@
-import java.util.*;
-public class Main{
-    public static void main(String args[]) throws Exception{
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        int K=sc.nextInt();
-        int k=K-1;
-        int []arr=new int[n];
-        Vector<Integer> v=new Vector<Integer>();
-        for(int i=0;i<n;i++){
-            arr[i]=sc.nextInt();
-            v.add(arr[i]);
-        }
-        int index=0;
-        // int ans=-1;
-         solve(k,index,v);
-         System.out.println(v);
+// https://practice.geeksforgeeks.org/problems/josephus-problem/1
+class Solution
+{
+   public int josephus(int n, int k)
+    {
+       List<Integer> list= new ArrayList<>();
+       for(int i=1;i<=n;i++)
+        list.add(i);
+        
+        helper(list,k,0);
+        return list.get(0);
     }
-    static void solve(int k,int index,Vector<Integer>v){
-        if(v.size()==1){
-            // ans=v.get(0);
+    
+    void helper(List<Integer> list, int k, int idx){
+        if(list.size()==1)
             return;
-        }
-        index=(index+k)%(v.size());
-        v.remove(index);
-        solve(k,index,v);
+        
+        k--;
+        int i=(idx+k)%list.size();
+        list.remove(i);
+        
+        helper(list,k+1,i);
     }
+
 }
+
